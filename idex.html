@@ -52,7 +52,7 @@
         gameLoop();
 
         /**
-        *Move everything
+        *Pohyb vsetkeho
         */
 
         function moveStuff() {
@@ -82,7 +82,7 @@
             }
         }    
         /**
-        *Draw everything
+        *Kreslenie vsetkeho
         */
 
         function drawStuff() {
@@ -99,7 +99,7 @@
             rectangle('#00bfff', foodPosX, foodPosY, snakeSize, snakeSize);
         }
 
-        //draw rectangle 
+        //kdeslenie stvorca
         function rectangle(color, x, y, width, height) {
             ctx.fillStyle = color;
             ctx.fillRect(x, y, width, height);
@@ -107,7 +107,7 @@
 
 
 
-        // randomize food position 
+        // nahodna pozicia jedla 
         function resetFood(){
             foodPosX = Math.floor(Math.random() * tileCountX) * snakeSize;
             foodPosY = Math.floor(Math.random() * tileCountY) * snakeSize;
