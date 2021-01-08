@@ -1,5 +1,5 @@
 # Snake-the-Game
 
-### Môj kód od **yablka** 
+Môj kód od **yablka**
 
-**Kubo makal lebo inak si kokot**
+**Kubo makaj lebo inak si kokot**
