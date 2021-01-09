@@ -28,6 +28,8 @@
         let velocityY = 0;
 
         //game
+        let gameIsRunning = true;
+
         const tileCountX = canvas.width / snakeSize;
         const tileCountY = canvas.height / snakeSize;
 
@@ -36,6 +38,7 @@
         let score = 0;
 
         let tail = [];
+        let snakeLenght = 14;
 
         //food
 
@@ -46,9 +49,11 @@
         //loop 
 
         function gameLoop() {
-            drawStuff();   
-            moveStuff();
-            setTimeout(gameLoop, 1000 / fps);
+            if (gameIsRunning){
+                drawStuff();   
+                moveStuff();
+                setTimeout(gameLoop, 1000 / fps);
+            }
         }
 
         resetFood();
@@ -78,12 +83,23 @@
                 snakePosY = canvas.height;
             }
 
+            //GAME OVER 
+            tail.forEach( snakePart => {
+                if (snakePosX === snakePart.x && snakePosY === snakePart.y){
+                    alert("YOU LOST")
+                }
+            })
+
             //tail 
             tail.push({ x: snakePosX, y: snakePosY});
+
+            //zabudne minule pozicie hada
+            tail = tail.slice(-1 * snakeLenght);
 
             //food collision 
             if (snakePosX === foodPosX && snakePosY === foodPosY){
                 title.textContent = ++score;
+                snakeLenght++;
                 resetFood();
             }
         }    
