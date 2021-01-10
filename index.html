@@ -38,7 +38,7 @@
         let score = 0;
 
         let tail = [];
-        let snakeLenght = 14;
+        let snakeLenght = 2;
 
         //food
 
@@ -86,8 +86,7 @@
             //GAME OVER 
             tail.forEach( snakePart => {
                 if (snakePosX === snakePart.x && snakePosY === snakePart.y){
-                    title.innerHTML = `☠️ <strong> ${score} </strong> ☠️`
-                    gameIsRunning = false;
+                    gameOver();
                 }
             })
 
@@ -137,8 +136,29 @@
 
         // nahodna pozicia jedla 
         function resetFood(){
+            //GAME OVER (nowhere to go)
+            if (snakeLenght === tileCountX * tileCountY){
+                gameOver();
+            }
+
             foodPosX = Math.floor(Math.random() * tileCountX) * snakeSize;
             foodPosY = Math.floor(Math.random() * tileCountY) * snakeSize;
+
+            //dont spawn food on snake head pls
+            if ( foodPosX === snakePosX && foodPosY === snakePosY) {
+                resetFood();
+            }
+
+            //dont spawn food on snake body pls 
+            if ( tail.some(snakePart => snakePart.x === foodPosX && snakePart.y === foodPosY)){
+                resetFood();
+            }
+        }
+
+        //Game over
+        function gameOver(){
+            title.innerHTML = `☠️ <strong> ${score} </strong> ☠️`;
+            gameIsRunning = false;
         }
 
 
@@ -153,29 +173,31 @@
                     velocityY = -1;        
                     }
                     break;
-            }
-            switch(event.key) {
+
                 case "ArrowDown":
                     if(velocityY !== -1){
                     velocityX = 0;
                     velocityY = 1;
                     }
                     break;
-            }
-            switch(event.key) {
+
                 case "ArrowLeft":
                     if(velocityX !== 1){
                     velocityX = -1;
                     velocityY = 0;
                     }
                     break;
-            }    
-            switch(event.key) {
+
                 case "ArrowRight":
                     if(velocityX !== -1){
                     velocityX = 1;
                     velocityY = 0;
                     }
+                    break;
+                
+                default:
+                    //restart game
+                    if (! gameIsRunning) location.reload(); 
                     break;
             }
         
