@@ -2,4 +2,4 @@
 
 Môj kód od **yablka**
 
-**Kubo makaj lebo inak si kokot**
+🍏yablko - https://www.youtube.com/channel/UC01guyOZpf40pUopBvdPwsg
